@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand-Based Volume Controller | Gesture Control for Windows</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🎚️ Hand Volume Control</div>
+            <ul class="nav-links">
+                <li><a href="#drum">Drum Kit</a></li>
+                <li><a href="#live-demo">Instruments</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Play Music with <span class="gradient-text">Hand Gestures</span></h1>
+                <p class="subtitle">A real-time interactive music experience using hand tracking and gesture control</p>
+                <div class="hero-buttons">
+                    <a href="#drum" class="btn btn-primary">Try Drum Kit</a>
+                    <a href="#live-demo" class="btn btn-secondary">Try Instruments</a>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">MediaPipe</span>
+                    <span class="tech-badge">Web Audio API</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Real-time</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="gesture-demo">
+                    <div class="hand-icon">✌️</div>
+                    <div class="volume-indicator">
+                        <div class="volume-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="drum" class="drum-section">
+        <div class="container">
+            <h2>🥁 Live Drum Kit</h2>
+            <p class="drum-subtitle">Move your hands over the drum pads to play!</p>
+            <div class="drum-container">
+                <div class="video-container" id="drumVideoContainer">
+                    <video id="drumWebcam" autoplay playsinline></video>
+                    <canvas id="drumCanvas"></canvas>
+                    <div class="drum-pads">
+                        <div class="drum-pad" data-sound="kick" data-zone="0">
+                            <span class="drum-label">KICK</span>
+                        </div>
+                        <div class="drum-pad" data-sound="snare" data-zone="1">
+                            <span class="drum-label">SNARE</span>
+                        </div>
+                        <div class="drum-pad" data-sound="hihat" data-zone="2">
+                            <span class="drum-label">HI-HAT</span>
+                        </div>
+                        <div class="drum-pad" data-sound="tom" data-zone="3">
+                            <span class="drum-label">TOM</span>
+                        </div>
+                        <div class="drum-pad" data-sound="crash" data-zone="4">
+                            <span class="drum-label">CRASH</span>
+                        </div>
+                        <div class="drum-pad" data-sound="ride" data-zone="5">
+                            <span class="drum-label">RIDE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="drum-controls">
+                    <button id="startDrum" class="btn btn-primary">🎥 Start Camera</button>
+                    <button id="stopDrum" class="btn btn-secondary" style="display:none;">⏹️ Stop</button>
+                    <div class="drum-status">
+                        <p id="drumStatus">Click "Start Camera" to begin</p>
+                    </div>
+                    <div class="drum-info">
+                        <h3>How to Play:</h3>
+                        <ul>
+                            <li>✋ Allow camera access when prompted</li>
+                            <li>👆 Move your index finger over the colored drum pads</li>
+                            <li>🎵 Each pad plays a different drum sound</li>
+                            <li>🎸 Try creating your own beats!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="live-demo" class="live-demo">
+        <div class="container">
+            <h2>🎵 Live Instrument Player</h2>
+            <p class="demo-subtitle">Move your hand to play different instruments!</p>
+            <div class="live-demo-content">
+                <div class="camera-container" id="instrumentVideoContainer">
+                    <video id="instrumentWebcam" autoplay playsinline></video>
+                    <canvas id="instrumentCanvas"></canvas>
+                    <div class="camera-controls">
+                        <button id="startCamera" class="btn btn-primary">Start Camera</button>
+                        <button id="stopCamera" class="btn btn-secondary" style="display:none;">Stop Camera</button>
+                    </div>
+                    <div id="status" class="status-message">Click "Start Camera" to begin</div>
+                </div>
+                <div class="instruments-panel">
+                    <h3>Instrument Zones</h3>
+                    <div class="instrument-zones">
+                        <div class="zone-item" data-instrument="piano">
+                            <div class="zone-icon">🎹</div>
+                            <div class="zone-name">Piano</div>
+                            <div class="zone-position">Top Left</div>
+                        </div>
+                        <div class="zone-item" data-instrument="guitar">
+                            <div class="zone-icon">🎸</div>
+                            <div class="zone-name">Guitar</div>
+                            <div class="zone-position">Top Right</div>
+                        </div>
+                        <div class="zone-item" data-instrument="drums">
+                            <div class="zone-icon">🥁</div>
+                            <div class="zone-name">Drums</div>
+                            <div class="zone-position">Bottom Left</div>
+                        </div>
+                        <div class="zone-item" data-instrument="violin">
+                            <div class="zone-icon">🎻</div>
+                            <div class="zone-name">Violin</div>
+                            <div class="zone-position">Bottom Right</div>
+                        </div>
+                        <div class="zone-item" data-instrument="trumpet">
+                            <div class="zone-icon">🎺</div>
+                            <div class="zone-name">Trumpet</div>
+                            <div class="zone-position">Center</div>
+                        </div>
+                    </div>
+                    <div class="gesture-info">
+                        <h4>How to Play:</h4>
+                        <ul>
+                            <li>✋ Show your hand to start playing</li>
+                            <li>↔️ Move left/right to change notes</li>
+                            <li>↕️ Move up/down to change volume</li>
+                            <li>🎯 Move between zones to switch instruments</li>
+                        </ul>
+                    </div>
+                    <div id="currentInstrument" class="current-instrument">
+                        <span class="instrument-icon">🎵</span>
+                        <span class="instrument-text">Move hand to play</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hand Gesture Music</h3>
+                    <p>Play music with intuitive hand gestures using real-time hand tracking</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Technologies</h3>
+                    <ul>
+                        <li>MediaPipe Hands</li>
+                        <li>Web Audio API</li>
+                        <li>JavaScript</li>
+                        <li>HTML5 Canvas</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Interactive Music Experience | Powered by Hand Tracking</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
